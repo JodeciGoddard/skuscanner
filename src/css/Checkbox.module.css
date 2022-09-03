@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.outter {
+    width: 15px;
+    height: 15px;
+    border: 2px solid #7f5bffa1;
+    margin: 3px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.pointer {
+    width: 12px;
+    height: 12px;
+    background-color: #b4b4b4;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(13%, 11%);
+}

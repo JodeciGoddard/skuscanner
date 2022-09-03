@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect } from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+import Navigation from "./components/Navigation";
+import Scan from "./screens/Scan";
+import MobileNav from "./components/MobileNav";
+import MobileScan from "./screens/MobileScan"
+
 
 function App() {
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    }
+  })
+
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          {width > 768 ? <Route path="/" element={<Navigation />}>
+            <Route path="scan" element={<Scan />} />
+          </Route>
+            :
+            <Route path="/" element={<MobileNav />}>
+              <Route path="scan" element={<MobileScan />} />
+            </Route>
+          }
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
