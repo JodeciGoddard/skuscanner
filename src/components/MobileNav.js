@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../css/MobileNav.module.css';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { AiFillDashboard, AiFillSetting, AiOutlineLogout } from 'react-icons/ai';
 import { BsUpcScan } from 'react-icons/bs';
 import { HiMenu } from 'react-icons/hi'
@@ -9,6 +9,12 @@ import { GrClose } from 'react-icons/gr';
 const MobileNav = () => {
 
     const [open, setOpen] = useState(false);
+
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        navigate("/scan");
+    }, [])
 
     const toggleMenu = () => {
         setOpen(!open);

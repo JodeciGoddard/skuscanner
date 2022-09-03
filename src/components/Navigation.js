@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../css/Navigation.module.css';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AiFillDashboard, AiFillSetting, AiOutlineLogout } from 'react-icons/ai';
 import { BsUpcScan } from 'react-icons/bs';
 import { Link } from "react-router-dom";
@@ -11,6 +11,11 @@ import logo from '../images/scannerlogo.png';
 const Navigation = () => {
 
     let location = useLocation();
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        navigate("/scan");
+    }, []);
 
     const links = [
         {
