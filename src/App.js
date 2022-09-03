@@ -4,6 +4,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  useNavigate,
 } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
@@ -16,12 +17,16 @@ function App() {
 
   const [width, setWidth] = useState(window.innerWidth);
 
+  const navigate = useNavigate();
+
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
   }
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowSizeChange);
+
+    navigate("/scan");
 
     return () => {
       window.removeEventListener('resize', handleWindowSizeChange);
